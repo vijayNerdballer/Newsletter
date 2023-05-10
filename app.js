@@ -10,7 +10,7 @@ const mailchimp = require("@mailchimp/mailchimp_marketing");
 const bodyParser=require("body-parser");
 const { Server } = require("http");
 app.use(bodyParser.urlencoded({extended:true}));
-app.listen(process.env.PORT || 3000,function(){
+app.listen( "3000",function(){
   console.log("server is running on port 3000");
 });
 app.use(express.static("public"));
@@ -19,7 +19,7 @@ app.get("/",function(req,res){
   
 });
 mailchimp.setConfig({
-apiKey:"5d01dad2086c7186f6e23fde9d59eca7-us21",
+apiKey:"18ce1967833084ac1466392e6dc80803-us21",
 server:"us21"
 });
 app.post("/failure",function(req,res){
@@ -52,10 +52,13 @@ const response = await mailchimp.lists.addListMember(listId, {
  console.log(`Successfully added contact as an audience member. The contact's id is ${response.id}.`);
 }
 
-run().catch((e) => res.sendFile(__dirname + "/failure.html"));
+run().catch((e) =>{ res.sendFile(__dirname + "/failure.html");
+console.log(e);
+
+});
 });
 
 // api key
-// 5d01dad2086c7186f6e23fde9d59eca7-us21
+// 18ce1967833084ac1466392e6dc80803-us21
 // list id
 // ecd311cc0b
