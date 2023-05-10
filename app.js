@@ -10,7 +10,7 @@ const mailchimp = require("@mailchimp/mailchimp_marketing");
 const bodyParser=require("body-parser");
 const { Server } = require("http");
 app.use(bodyParser.urlencoded({extended:true}));
-app.listen( "3000",function(){
+app.listen( process.env.PORT||"3000",function(){
   console.log("server is running on port 3000");
 });
 app.use(express.static("public"));
